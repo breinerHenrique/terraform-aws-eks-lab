@@ -21,24 +21,17 @@ module "eks" {
   worker_groups = [
     {
       name                          = "worker-group-1"
-      instance_type                 = "t3a.small"
+      instance_type                 = "t3a.small" #Define qual tipo de instância EC2 será utilizada como node do cluster
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
-      asg_desired_capacity          = 2
+      asg_desired_capacity          = 2 #Define a quantidade de nodes nesse work group
     },
-    # {
-    #   name                          = "worker-group-3"
-    #   instance_type                 = "t3a.small"
-    #   additional_userdata           = "echo foo bar"
-    #   additional_security_group_ids = [aws_security_group.worker_group_mgmt_three.id]
-    #   asg_desired_capacity          = 2
-    # },
     {
       name                          = "worker-group-2"
-      instance_type                 = "t3a.small"
+      instance_type                 = "t3a.small" #Define qual tipo de instância EC2 será utilizada como node do cluster
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 1
+      asg_desired_capacity          = 1 #Define a quantidade de nodes nesse work group
     },
   ]
 }
