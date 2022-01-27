@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-green
+  template:
+    metadata:
+      labels:
+        app: nginx-green
+    spec:
+      containers:
+      - name: nginx-green
+        image: breinerhenrique/nginx:green
+        resources:
+          requests:
+            memory: "1Mi"
+            cpu: "1m"
+          limits:
+            memory: "120Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-green-service
+spec:
+  selector:
+    app: nginx-green
+  ports:
+  - port: 80
+    targetPort: 80
+#  type: LoadBalancer

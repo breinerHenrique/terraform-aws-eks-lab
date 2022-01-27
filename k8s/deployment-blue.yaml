@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-blue
+  template:
+    metadata:
+      labels:
+        app: nginx-blue
+    spec:
+      containers:
+      - name: nginx-blue
+        image: breinerhenrique/nginx:blue
+        resources:
+          requests:
+            memory: "1Mi"
+            cpu: "1m"
+          limits:
+            memory: "50Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-blue-service
+spec:
+  selector:
+    app: nginx-blue
+  ports:
+  - port: 80
+    targetPort: 80
+#  type: LoadBalancer

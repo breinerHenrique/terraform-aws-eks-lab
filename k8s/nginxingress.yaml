@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: a1ad473147eff41b2becc714c483745b-d868198bc55d7c1f.elb.us-east-1.amazonaws.com
+    http:
+      paths:
+        - path: /blue
+          backend:
+            serviceName: nginx-blue-service
+            servicePort: 80
+        - path: /green
+          backend:
+            serviceName: nginx-green-service
+            servicePort: 80

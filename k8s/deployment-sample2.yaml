@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-sample2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-sample2
+  template:
+    metadata:
+      labels:
+        app: nginx-sample2
+    spec:
+      containers:
+      - name: nginx-sample2
+        image: breinerhenrique/nginx:sample2
+        resources:
+          requests:
+            memory: "1Mi"
+            cpu: "1m"
+          limits:
+            memory: "50Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-sample2-service
+spec:
+  selector:
+    app: nginx-sample2
+  ports:
+  - port: 80
+    targetPort: 80
+#  type: LoadBalancer

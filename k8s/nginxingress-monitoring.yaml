@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress-monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: a5faab7c70519491dbf29f835fb8195b-465fbc557285ca7d.elb.us-east-1.amazonaws.com
+    http:
+      paths:
+        - path: /grafana
+          backend:
+            serviceName: grafana
+            servicePort: 80
+        - path: /prometheus
+          backend:
+            serviceName: prometheus-server
+            servicePort: 80
