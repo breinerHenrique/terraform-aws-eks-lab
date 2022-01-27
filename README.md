@@ -77,5 +77,7 @@ Obs.: A saída do comando de destroy apresentará erro devido criação do LoadB
 Outras documentações que me ajudaram bastante a entender o terraform foram:
 
 https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest
+
 https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws/latest
+
 https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
