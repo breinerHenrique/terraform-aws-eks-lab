@@ -4,7 +4,7 @@ Será necessário a criação de um usuário do tipo "service" no IAM da AWS e e
 As permissões necessárias para esse usuário (ainda em validação para otimização) estão disponíveis na imagem "IAM_AWS.png"
 
 # Criação do cluster:
-# Arquivos disponíveis dentro da pasta "terraform"
+Arquivos disponíveis dentro da pasta "terraform"
 
 A criação do cluster e todas as suas dependências são feitas via terraform através dos comandos (comando deve ser executado dentro da pasta "terraform"):
 - terraform init
@@ -21,7 +21,7 @@ Dos arquivos de configuração do terraform, apenas 'eks-cluster.tf' e 'vpc.tf' 
 - vpc.tf: Permite definir o nome do cluster, as tags utilizadas pelas VPCs e Subnets e os endereços IPs que serão utilizados no ambiente.
 
 # Deploy no Kubernetes:
-# Arquivos disponíveis dentro da pasta "k8s"
+Arquivos disponíveis dentro da pasta "k8s"
 
 Após criação do cluster via terraform, o acesso estará apto a ser feito via kubectl e poderá ser realizado alguns deploys no kubernetes.
 
