@@ -73,3 +73,9 @@ Para evitar gastos desnecessários, destruir todo o cluster ao final do uso via 
 - terraform apply -auto-approve
 
 Obs.: A saída do comando de destroy apresentará erro devido criação do LoadBalancer não ter sido feita via terraform (ainda), será necessário exclusão manual via console da AWS e em seguida, executar o destroy novamente.
+
+Outras documentações que me ajudaram bastante a entender o terraform foram:
+
+https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest
+https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws/latest
+https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
