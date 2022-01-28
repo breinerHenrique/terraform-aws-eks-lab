@@ -78,42 +78,42 @@ Obs.: A saída do comando de destroy apresentará erro devido criação do LoadB
 
 Note: remember to replace <account_id> with your own.
 
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": "eks:*",
-            "Resource": "*"
-        },
-        {
-            "Action": [
-                "ssm:GetParameter",
-                "ssm:GetParameters"
-            ],
-            "Resource": [
-                "arn:aws:ssm:*:<account_id>:parameter/aws/*",
-                "arn:aws:ssm:*::parameter/aws/*"
-            ],
-            "Effect": "Allow"
-        },
-        {
-             "Action": [
-               "kms:CreateGrant",
-               "kms:DescribeKey"
-             ],
-             "Resource": "*",
-             "Effect": "Allow"
-        },
-        {
-             "Action": [
-               "logs:PutRetentionPolicy"
-             ],
-             "Resource": "*",
-             "Effect": "Allow"
-        }        
-    ]
-}
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Action": "eks:*",
+                        "Resource": "*"
+                    },
+                    {
+                        "Action": [
+                            "ssm:GetParameter",
+                            "ssm:GetParameters"
+                        ],
+                        "Resource": [
+                            "arn:aws:ssm:*:<account_id>:parameter/aws/*",
+                            "arn:aws:ssm:*::parameter/aws/*"
+                        ],
+                        "Effect": "Allow"
+                    },
+                    {
+                        "Action": [
+                        "kms:CreateGrant",
+                        "kms:DescribeKey"
+                        ],
+                        "Resource": "*",
+                        "Effect": "Allow"
+                    },
+                    {
+                        "Action": [
+                        "logs:PutRetentionPolicy"
+                        ],
+                        "Resource": "*",
+                        "Effect": "Allow"
+                    }        
+                ]
+            }
 
 # Outras documentações que me ajudaram bastante a entender o terraform foram:
 
