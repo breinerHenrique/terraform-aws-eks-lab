@@ -70,7 +70,7 @@ Obs.: Foi utlizado uma versão mais antiga do Ingress Controller devido alguns e
 
 Com os passos acima, o laboratório estará pronto para ser utilizado em sua versão beta hehe.
 Para evitar gastos desnecessários, destruir todo o cluster ao final do uso via comando abaixo, que deve ser executado dentro da pasta "kubernetes":
-- terraform apply -auto-approve
+- terraform destroy -auto-approve
 
 Obs.: A saída do comando de destroy apresentará erro devido criação do LoadBalancer não ter sido feita via terraform (ainda), será necessário exclusão manual via console da AWS e em seguida, executar o destroy novamente.
 
