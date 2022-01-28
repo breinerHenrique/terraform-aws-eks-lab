@@ -74,7 +74,48 @@ Para evitar gastos desnecessários, destruir todo o cluster ao final do uso via 
 
 Obs.: A saída do comando de destroy apresentará erro devido criação do LoadBalancer não ter sido feita via terraform (ainda), será necessário exclusão manual via console da AWS e em seguida, executar o destroy novamente.
 
-Outras documentações que me ajudaram bastante a entender o terraform foram:
+# JSON utilizado para a policy "EksAllAccess" no IAM da AWS:
+
+Note: remember to replace <account_id> with your own.
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "eks:*",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters"
+            ],
+            "Resource": [
+                "arn:aws:ssm:*:<account_id>:parameter/aws/*",
+                "arn:aws:ssm:*::parameter/aws/*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+             "Action": [
+               "kms:CreateGrant",
+               "kms:DescribeKey"
+             ],
+             "Resource": "*",
+             "Effect": "Allow"
+        },
+        {
+             "Action": [
+               "logs:PutRetentionPolicy"
+             ],
+             "Resource": "*",
+             "Effect": "Allow"
+        }        
+    ]
+}
+
+# Outras documentações que me ajudaram bastante a entender o terraform foram:
 
 https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest
 
