@@ -24,8 +24,10 @@ pipeline {
                  }
             }
             stage ("Waiting") {
-                echo 'Waiting 1 minute for EKS LoadBalance send Grafana External IP'
-                sleep 60 // seconds
+                steps {
+                    echo 'Waiting 1 minute for EKS LoadBalance send Grafana External IP'
+                    sleep 60 // seconds
+                }
 }
              stage('Sending Enviroment Access Details | Grafana') {
                 steps {
