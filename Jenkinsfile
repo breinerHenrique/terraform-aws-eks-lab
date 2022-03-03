@@ -23,10 +23,9 @@ pipeline {
                        sh 'helm upgrade --install grafana grafana/grafana --values k8s/monitoring/values-grafana.yaml  --namespace monitoring'
                  }
             }
-            stage ("Waiting") {
+            stage ("Waiting EKS LoadBalancer configuring Grafana Extenal IP") {
                 steps {
-                    echo 'Waiting 1 minute for EKS LoadBalance send Grafana External IP'
-                    sleep 60 // seconds
+                    sleep 45 // seconds
                 }
 }
              stage('Sending Enviroment Access Details | Grafana') {
