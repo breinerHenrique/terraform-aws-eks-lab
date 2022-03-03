@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Git Clone Source Repositoty') {
             steps {
-                git credentialsId: 'GitHubCredentials', url: 'https://github.com/breinerHenrique/terraform-aws-eks-lab.git'
+                git branch: 'main'
+                    credentialsId: 'GitHubCredentials', url: 'https://github.com/breinerHenrique/terraform-aws-eks-lab.git'
             }
         }
             stage('Enable Metrics Server on EKS') {
