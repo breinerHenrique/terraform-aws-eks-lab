@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Git Clone Source Repositoty') {
             steps {
-                git branch: 'main'
+                git branch: 'main',
                     credentialsId: 'GitHubCredentials', url: 'https://github.com/breinerHenrique/terraform-aws-eks-lab.git'
             }
         }
