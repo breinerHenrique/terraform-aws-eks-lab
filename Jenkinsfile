@@ -11,7 +11,7 @@ pipeline {
                         sh 'kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml'
                  }
             }
-            stage('Creating Monitoring Environment') {
+            stage('Creating Monitoring Environment on AWS EKS') {
                 steps {
                        sh 'kubectl create namespace monitoring'
                        sh 'helm repo add prometheus-community https://prometheus-community.github.io/helm-charts'
