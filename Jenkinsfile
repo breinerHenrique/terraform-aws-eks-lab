@@ -23,6 +23,10 @@ pipeline {
                        sh 'helm upgrade --install grafana grafana/grafana --values k8s/monitoring/values-grafana.yaml  --namespace monitoring'
                  }
             }
+            stage ("Creating API namespace") {
+                steps {
+                    sh 'kubectl create namespace api-services'
+                }
             stage ("Waiting EKS LoadBalancer configuring Grafana Extenal IP") {
                 steps {
                     sleep 45 // seconds
