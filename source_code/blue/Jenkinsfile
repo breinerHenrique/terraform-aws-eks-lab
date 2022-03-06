@@ -7,6 +7,23 @@ pipeline {
                     url: 'https://github.com/breinerHenrique/terraform-aws-eks-lab.git'
             }
         }
+        stage('Build Image') {
+            steps {
+                script {
+                    dockerapp = docker.build("breinerhenrique/eks-lab-nginx-blue:${env.BUILD_ID}", '-f source_code/blue/dockerfile .')
+                } 
+            }
+        }
+         stage('Push Image') {
+            steps {
+                script { 
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
+                        dockerapp.push('latest')
+                        dockerapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
+        }
 //             stage('Enable Metrics Server on EKS') {
 //                 steps {
 //                         sh 'kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml'
