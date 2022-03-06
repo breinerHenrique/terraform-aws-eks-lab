@@ -7,7 +7,7 @@ pipeline {
                     url: 'https://github.com/breinerHenrique/terraform-aws-eks-lab.git'
             }
         }
-        stage('Building Image') {
+        stage('Build Image') {
             steps {
                 script {
                     dockerapp = docker.build("breinerhenrique/eks-lab-nginx-blue:${env.BUILD_ID}", '-f source_code/blue/dockerfile .')
