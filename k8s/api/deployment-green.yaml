@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx-green
-        image: breinerhenrique/eks-lab-nginx-green:tag #tag será substituído pelo BUILD_ID na pipeline do Jenkins
+        image: breinerhenrique/eks-lab-nginx-green:{{tag}} #variável 'tag' será substituído pelo BUILD_ID na pipeline do Jenkins
         resources:
           requests:
             memory: "1Mi"
