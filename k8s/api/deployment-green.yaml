@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-green
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: nginx-green
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx-green
-        image: breinerhenrique/nginx:green
+        image: breinerhenrique/eks-lab-nginx-green:tag #tag será substituído pelo BUILD_ID na pipeline do Jenkins
         resources:
           requests:
             memory: "1Mi"

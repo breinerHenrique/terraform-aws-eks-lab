@@ -23,6 +23,19 @@ pipeline {
                     }
                 }
             }
+         stage('Deploy on AWS EKS') {
+            steps {
+                environment{
+                tag_version = "${env.BUILD_ID}" 
+            }
+            steps {
+                script {
+                    sh 'sed -i "s/{{tag}}/$tag_version/g" ./k8s/api/deployment-blue.yaml' /*insere a tag no arquivo de deployment*/
+                    sh 'cat ./k8s/api/deployment-blue.yaml' /*exibe o conteudo para verificar se alterou*/
+                    sh 'kubectl apply -f k8s/api/deployment-blue.yaml  -n api-services'
+                }
+            }
+            }   
          }
          }
     }
