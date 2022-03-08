@@ -1,12 +1,16 @@
-Este repositório pode ser usado para criar um cluster Kubernetes utilizando o serviço EKS da AWS e possui alguns exemplos de deploys a serem feitos no cluster.
+Este repositório contém os arquivos necessários para montar um ambiente de laboratório de Kubernetes utilizando o serviço EKS da AWS. 
 
-Será necessário a criação de um usuário do tipo "service" no IAM da AWS e em seguida logar com esse usuário no AWS CLI.
-As permissões necessárias para esse usuário (ainda em validação para otimização) estão disponíveis na imagem "IAM_AWS.png"
+O ambiente está bem completo, criação do cluster via terraform e implementação de pipelines CI/CD utilizando um servidor Jenkins (sendo executado em uma instância EC2). As pipelines são para o deploy do "Ambiente inicial", onde são aplicados os manifestos para monitoramento do cluster e também pipelines para deploy de duas aplivações web, as quais são executadas automaticamente através de commit no repositório Git do projeto.
+
+Tanto para criação do cluster quanto utilização do Jenkins, forma criados usuários AWS do tipo "service", sendo utilizados no PC responsável pelo terraform e no servidor Jenkins. As permissões necessárias para esses usuários (ainda em validação para otimização e segurança) estão disponíveis no repositório.
+
+# Abaixo os passos para configuração do cluster
+Todo esse processo foi automatizado com o Jenkins.
 
 # Criação do cluster:
-Arquivos disponíveis dentro da pasta "terraform"
+Arquivos disponíveis dentro da pasta "terraform_create_eks"
 
-A criação do cluster e todas as suas dependências são feitas via terraform através dos comandos (comando deve ser executado dentro da pasta "terraform"):
+A criação do cluster e todas as suas dependências são feitas via terraform através dos comandos (comando deve ser executado dentro da pasta "terraform_create_eks"):
 - terraform init
 - terraform plan
 - terraform apply [yes quando for solicitado]
@@ -69,7 +73,7 @@ Obs.: Foi utlizado uma versão mais antiga do Ingress Controller devido alguns e
 # Informações Finais:
 
 Com os passos acima, o laboratório estará pronto para ser utilizado em sua versão beta hehe.
-Para evitar gastos desnecessários, destruir todo o cluster ao final do uso via comando abaixo, que deve ser executado dentro da pasta "kubernetes":
+Para evitar gastos desnecessários, destruir todo o cluster ao final do uso via comando abaixo, que deve ser executado dentro da pasta "terraform_create_eks":
 - terraform destroy -auto-approve
 
 Obs.: A saída do comando de destroy apresentará erro devido criação do LoadBalancer não ter sido feita via terraform (ainda), será necessário exclusão manual via console da AWS e em seguida, executar o destroy novamente.
@@ -122,3 +126,5 @@ https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest
 https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws/latest
 
 https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
+
+https://jhooq.com/aws-kubernetes-jenkins-pipeline/#1-setup-an-aws-ec2-instance
